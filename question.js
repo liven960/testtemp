@@ -11,7 +11,7 @@ let Koreandict = {
 }
 
 function reset_input() {
-    $('.answer_input').val('');
+    $('#input').val('');
     answer = "";
 }
 
@@ -24,16 +24,16 @@ $(function show_question() {
 });
 
 function change(obj) {
-    let text = $('.answer_input').val();
+    let text = $('#input').val();
 
     if (text == "") {
-        $('.answer_input').css('font-family', 'neodgm');
-        $('.answer_input').css('color', '#888888')
+        $('#input').css('font-family', 'neodgm');
+        $('#input').css('color', '#888888')
     }
 
     if (text != "") {
-        $('.answer_input').css('font-family', 'PiCell');
-        $('.answer_input').css('color', 'white');
+        $('#input').css('font-family', 'PiCell');
+        $('#input').css('color', '#00FF00');
     }
 
     resizeHeight(obj);
@@ -41,23 +41,28 @@ function change(obj) {
 }
 
 function resizeHeight(obj) {
+
     obj.style.height = 'auto';
-    obj.style.height = obj.scrollHeight + 'px';
+    let new_height = String(obj.scrollHeight)
+    obj.style.height = `${new_height}` + 'px';
 }
 
-
-letter_changed_num = 0
-after_letter_length = 1
-before_letter_length = 0
 start = 1
-
 before_text = "";
-i = 1;
 shift = 0; //shift key 인식 (쌍자음을 위한 조치)
 
-//input 입력 받을 때마다
-
+//input 입력 받을 때마다 (debounce 처리를 해줌)
 $('#input').on('keyup', {key: this.key}, _.debounce(input_sync, 3));
+
+
+// $('#input').keyup(function () {
+//     let inputVal = $(this).val();
+//     $(this).val((inputVal.replace(/[ㄱ-힣]/g, '')));
+//     if (inputVal == ''){
+//         $('#input').css('font-family', 'neodgm');
+//         $('#input').css('color', '#888888')
+//     }
+// });
 
 function input_sync(key) {
     console.log(key)
@@ -114,10 +119,10 @@ function input_sync(key) {
             }
         } else if (key.key == ',') {
             if (shift == 1) {
-                special_case = ',';
+                special_case = '<';
                 shift = 0;
             } else {
-                special_case = '<';
+                special_case = ',';
             }
         } else if (key.code == 'Digit1') {
             if (shift == 1 || key.shiftKey == true){
@@ -137,6 +142,7 @@ function input_sync(key) {
             }
         }
         $('#input').val(before_text + special_case);
+        console.log('special_case: ', special_case);
         before_text = $('#input').val();
     } else if (key.ctrlKey == true || key.keyCode == 17) { //ctrl이나 shift가 눌린 거라면
         console.log('ctrl, shift 들어왔습니다!');
@@ -148,62 +154,18 @@ function input_sync(key) {
         console.log('\nquestion', question);
         text = $('#input').val().trim();
         console.log('text', text);
-        console.log('text', inko.en2ko(text));
+        let kor_text = inko.en2ko(text);
+        console.log('text', kor_text);
         let height = $('#input').css('height');
-        return show_result(text, height, question);
+        return show_result(text, kor_text, height, question);
     } else {
         console.log('예외에 들어왔습니다!');
         shift = 0;
-        // $('#input').val(before_text);
-        // before_text = text;
     }
     // console.log('\n');
 }
 
-
-
-function getConstantVowel(str) {
-    const f = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ',
-               'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ',
-               'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-    const s = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ',
-               'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ',
-               'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
-    const t = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ',
-               'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ',
-               'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ',
-               'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-
-    const ga = 44032;
-    let uni = str.charCodeAt(0);
-
-    uni = uni - ga;
-
-    let fn = parseInt(uni / 588);
-    let sn = parseInt((uni - (fn * 588)) / 28);
-    let tn = parseInt(uni % 28);
-    let result = '';
-
-    let f_letter = '';
-    let s_letter = '';
-    let t_letter = '';
-
-    if (fn >= 0 && fn < f.length){
-        f_letter = f[fn];
-    }
-    if (sn >= 0 && sn < s.length){
-        s_letter = s[sn];
-    }
-    if (tn >= 0 && tn <t.length){
-        t_letter = t[tn];
-    }
-    result = f_letter + s_letter + t_letter;
-
-    return result;
-}
-
-
-function show_result(text, height, question) {
+function show_result(text, kor_text, height, question) {
     $('#question').css('display', 'none');
     $('textarea').remove();
     let temp_html = `<div id="show-input" style="height: ${height}">${text}</div>`;
@@ -211,13 +173,13 @@ function show_result(text, height, question) {
     $.ajax({
         type: "POST",
         url: "/question/save",
-        data: {question_give: question, text_give: text},
+        data: {question_give: question, text_give1: text, text_give2: kor_text},
         success: function (response) {
-            // if (response["msg"] = "success") {
-            //     setTimeout(function () {
-            //         window.location.href = './show';
-            //     }, 2000);
-            // }
+            if (response["msg"] = "success") {
+                setTimeout(function () {
+                    window.location.href = './show';
+                }, 2500);
+            }
         }
     })
 }
