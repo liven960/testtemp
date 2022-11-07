@@ -32,7 +32,7 @@ function change(obj) {
     }
 
     if (text != "") {
-        $('.answer_input').css('font-family', 'Pi-Cell');
+        $('.answer_input').css('font-family', 'PiCell');
         $('.answer_input').css('color', 'white');
     }
 
