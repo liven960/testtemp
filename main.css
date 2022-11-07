@@ -61,6 +61,7 @@ body::-webkit-scrollbar {
     border: none;
     outline: none;
     word-break: break-all;
+    font-family: 'Pi-Cell';
     /*ime-mode: disabled;*/
     /*-webkit-ime-mode: disabled;*/
     /*-moz-ime-mode: disabled;*/
