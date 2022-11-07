@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--favicon.ico 오류 방지용-->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <!--반응형 웹페이지용-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="./static/css/main.css">
+
+    <!-- 한영 영한 변환-->
+    <script src="https://cdn.jsdelivr.net/npm/inko@1.1.1/inko.min.js"></script>
+
+    <!-- debounce, throttler -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
+
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Main Page</title>
+</head>
+<body onload="reset_input()">
+    <!--  question  -->
+    <div id="all">
+        <div id="box">
+            <div id="question">
+                {{question}}
+            </div>
+            <div id="show-box">
+                <textarea id="input" rows="1" oninput="change(this)"
+                          placeholder="|엔터를 누르면 입력 완료됩니다"
+                          pattern ="^[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}=;]+$">
+                </textarea>
+<!--                <div id="show-input-temp"></div> &lt;!&ndash; 나중에 지우기&ndash;&gt;-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="./static/js/question.js"></script>
+</body>
+</html>
