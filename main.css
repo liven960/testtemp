@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: 'PiCell';
-    src: url('../source/Pi-Cell.otf');
+    src: url('./Pi-Cell.otf');
     /*font-weight: normal;*/
     /*font-style: normal;*/
     /*font-display: swap;*/
@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: 'neodgm';
-    src: url('../source/NeoDunggeunmoPro-Regular.woff') format('woff');
+    src: url('./NeoDunggeunmoPro-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
