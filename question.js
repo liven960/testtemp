@@ -11,7 +11,7 @@ let Koreandict = {
 }
 
 function reset_input() {
-    $('#input').val('');
+    $('.answer_input').val('');
     answer = "";
 }
 
@@ -24,16 +24,16 @@ $(function show_question() {
 });
 
 function change(obj) {
-    let text = $('#input').val();
+    let text = $('.answer_input').val();
 
     if (text == "") {
-        $('#input').css('font-family', 'neodgm');
-        $('#input').css('color', '#888888')
+        $('.answer_input').css('font-family', 'neodgm');
+        $('.answer_input').css('color', '#888888')
     }
 
     if (text != "") {
-        $('#input').css('font-family', 'Pi-Cell');
-        $('#input').css('color', 'white');
+        $('.answer_input').css('font-family', 'Pi-Cell');
+        $('.answer_input').css('color', 'white');
     }
 
     resizeHeight(obj);
