@@ -1,0 +1,115 @@
+
+@font-face {
+    font-family: 'PiCell';
+    src: url('./Pi-Cell.otf');
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+    /*font-display: swap;*/
+}
+
+@font-face {
+    font-family: 'neodgm';
+    src: url('./NeoDunggeunmoPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #000000;
+    font-family: 'neodgm';
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+/*question.html*/
+#all {
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    text-align: center;
+}
+#box {
+    margin: 0;
+    padding: 0;
+}
+#question {
+    width: 80vw;
+    margin-bottom: 8rem;
+}
+#input {
+    width: 80vw;
+    font-family: 'neodgm';
+    font-size: 2.7rem;
+    height: 2.7rem;
+    color: #888888;
+    background-color: #000000;
+    text-align: center;
+    margin-bottom: 4rem;
+    overflow: hidden;
+    resize: none;
+    border: none;
+    outline: none;
+    word-break: break-all;
+    /*ime-mode: disabled;*/
+    /*-webkit-ime-mode: disabled;*/
+    /*-moz-ime-mode: disabled;*/
+    /*-ms-ime-mode: disabled;*/
+    /*ime-mode: disabled;*/
+}
+#input ::placeholder {
+    font-family: 'neodgm';
+}
+
+#show-input {
+    width: 80vw;
+    color: #00FF00;
+    font-size: 3rem;
+    word-break: break-all;
+    font-family: 'PiCell';
+    z-index: 3;
+}
+/*#show-input-temp {*/
+/*    width: 80vw;*/
+/*    color: #00FF00;*/
+/*    font-size: 3rem;*/
+/*    word-break: break-all;*/
+/*    font-family: 'neodgm';*/
+/*    z-index: 3;*/
+/*}*/
+
+/*show.html*/
+#all-answers {
+    width: 100vw;
+    height: 100vh;
+}
+
+#box-answers {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.show-answer {
+    width: 80vw;
+    color: #00FF00;
+    text-align: center;
+    font-size: 2.7rem;
+    border: 1px solid white;
+    margin: 0 auto 0.1rem auto;
+    word-break: break-all;
+}
