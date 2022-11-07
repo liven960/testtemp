@@ -1,7 +1,7 @@
 
 @font-face {
     font-family: 'PiCell';
-    src: url('./Pi-Cell.otf');
+    src: url('../source/Pi-Cell.otf');
     /*font-weight: normal;*/
     /*font-style: normal;*/
     /*font-display: swap;*/
@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: 'neodgm';
-    src: url('./NeoDunggeunmoPro-Regular.woff') format('woff');
+    src: url('../source/NeoDunggeunmoPro-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -46,6 +46,7 @@ body::-webkit-scrollbar {
 #question {
     width: 80vw;
     margin-bottom: 8rem;
+    /*position: absolute;*/
 }
 #input {
     width: 80vw;
@@ -89,27 +90,53 @@ body::-webkit-scrollbar {
 /*}*/
 
 /*show.html*/
+#page {
+    display: flex;
+    flex-direction: row;
+}
+#narrow {
+    font-family: 'neodgm';
+    width: 20vw;
+    height: 100vh;
+    color: white;
+    font-size: 1.5rem;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+#answer-again {
+    margin-bottom: 1.5rem;
+}
+
 #all-answers {
-    width: 100vw;
+    width: 80vw;
     height: 100vh;
 }
 
 #box-answers {
     margin: 0;
     padding: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
 }
 
 .show-answer {
     width: 80vw;
     color: #00FF00;
-    text-align: center;
-    font-size: 2.7rem;
+    text-align: left;
+    font-size: 3rem;
     border: 1px solid white;
     margin: 0 auto 0.1rem auto;
     word-break: break-all;
+    font-family: 'PiCell';
 }
